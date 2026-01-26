@@ -103,6 +103,7 @@ include_directories(include lib/karto_sdk/include
                             ${CHOLMOD_INCLUDE_DIR}
                             ${Boost_INCLUDE_DIRS}
                             ${CERES_INCLUDES}
+                            ${tf2_sensor_msgs_INCLUDE_DIRS}
 )
 
 add_definitions(${EIGEN3_DEFINITIONS})
@@ -159,7 +160,7 @@ target_link_libraries(SlamToolboxPlugin PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  tf2_sensor_msgs::tf2_sensor_msgs
+  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_include_directories(SlamToolboxPlugin PUBLIC
   ${OGRE_INCLUDE_DIRS}
@@ -198,7 +199,7 @@ target_link_libraries(ceres_solver_plugin PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  tf2_sensor_msgs::tf2_sensor_msgs
+  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_link_libraries(ceres_solver_plugin PUBLIC ${CERES_LIBRARIES}
                                           ${Boost_LIBRARIES}
@@ -235,7 +236,7 @@ target_link_libraries(toolbox_common PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  tf2_sensor_msgs::tf2_sensor_msgs
+  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_link_libraries(toolbox_common PUBLIC kartoSlamToolbox ${Boost_LIBRARIES})
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
