@@ -67,7 +67,6 @@ private:
   ceres::Problem::Options options_problem_;
   ceres::LossFunction * loss_function_;
   ceres::Problem * problem_;
-  // ceres::Manifold * angle_manifold_;
   ceres::LocalParameterization * angle_local_parameterization_;
   bool was_constant_set_, debug_logging_;
 

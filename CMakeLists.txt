@@ -121,11 +121,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   srv/AddSubmap.srv
   srv/DeserializePoseGraph.srv
   srv/SerializePoseGraph.srv
-  msg/NewNodeEvent.msg
-  msg/LoopClosureEvent.msg
-  msg/GraphNode.msg
-  msg/GraphEdge.msg
-  msg/PoseGraph.msg
   DEPENDENCIES builtin_interfaces geometry_msgs std_msgs nav_msgs visualization_msgs sensor_msgs
 )
 
@@ -160,7 +155,6 @@ target_link_libraries(SlamToolboxPlugin PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_include_directories(SlamToolboxPlugin PUBLIC
   ${OGRE_INCLUDE_DIRS}
@@ -199,7 +193,6 @@ target_link_libraries(ceres_solver_plugin PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_link_libraries(ceres_solver_plugin PUBLIC ${CERES_LIBRARIES}
                                           ${Boost_LIBRARIES}
@@ -210,7 +203,7 @@ target_link_libraries(ceres_solver_plugin PUBLIC "${cpp_typesupport_target}")
 pluginlib_export_plugin_description_file(slam_toolbox solver_plugins.xml)
 
 #### Tool lib for mapping
-add_library(toolbox_common src/slam_toolbox_common.cpp src/map_saver.cpp src/loop_closure_assistant.cpp src/loop_closure_listener.cpp src/laser_utils.cpp src/slam_mapper.cpp)
+add_library(toolbox_common src/slam_toolbox_common.cpp src/map_saver.cpp src/loop_closure_assistant.cpp src/laser_utils.cpp src/slam_mapper.cpp)
 target_link_libraries(toolbox_common PUBLIC
   ${bond_TARGETS}
   ${builtin_interfaces_TARGETS}
@@ -236,7 +229,6 @@ target_link_libraries(toolbox_common PUBLIC
   tf2_geometry_msgs::tf2_geometry_msgs
   tf2_ros::static_transform_broadcaster_node
   tf2_ros::tf2_ros
-  # tf2_sensor_msgs::tf2_sensor_msgs
 )
 target_link_libraries(toolbox_common PUBLIC kartoSlamToolbox ${Boost_LIBRARIES})
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
@@ -336,6 +328,5 @@ install(FILES solver_plugins.xml rviz_plugins.xml
 ament_export_include_directories(include)
 ament_export_libraries(${libraries} kartoSlamToolbox)
 ament_export_dependencies(${dependencies})
-ament_export_dependencies(${dependencies} rosidl_default_runtime)
 ament_export_targets(SlamToolboxPlugin HAS_LIBRARY_TARGET)
 ament_package()
